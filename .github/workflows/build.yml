@@ -1,0 +1,44 @@
+name: 'Produce Presentation Content'
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build-pptx:
+    name: 'Build PowerPoint Presentation'
+    runs-on: ubuntu-latest
+    container:
+      image: seesharprun/pandoc-build
+    steps:
+      - name: 'Checkout Code'
+        uses: actions/checkout@v2
+      - name: 'Convert SVG Images to PNG'
+        run: ls | grep '.svg' | xargs basename -s '.svg' | xargs -I % sh -c "inkscape %.svg --export-png=%.png --without-gui"
+        working-directory: ./presentations/diagrams
+      - name: 'Run Pandoc Builds'
+        run: ls | grep '.md' | xargs basename -s '.md' | xargs -I % sh -c "pandoc %.md --standalone --slide-level=3 --lua-filter=../.production/prep.lua --reference-doc=../.production/template.pptx --variable=monofont:'Cascadia Code' --output %.pptx"
+        working-directory: ./presentations
+      - name: 'Upload Presentation Artifacts'
+        uses: actions/upload-artifact@v2
+        with:
+          name: presentations
+          path: ./presentations/*.pptx
+  release-content:
+    name: 'Create GitHub Release'
+    runs-on: ubuntu-latest
+    needs: [ build-pptx ]
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+    steps:      
+      - name: 'Download Presentation Artifacts'
+        uses: actions/download-artifact@v2
+        with:
+          name: presentations
+      - name: 'Create GitHub Release'
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ./**/*.pptx         
+          tag_name: v${{ github.run_number }}
+          name: Release V${{ github.run_number }}
+          
+    
