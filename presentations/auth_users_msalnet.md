@@ -1,6 +1,6 @@
 ---
 title: 'Authenticating users in .NET apps with MSAL.NET'
-author: 'Part 1 of 4 in the [Develop .NET Applications with the Microsoft Identity Platform](https://github.com/msusdev) series'
+author: 'Part 1 of 3 in the [Develop .NET Applications with the Microsoft Identity Platform](https://github.com/msusdev) series'
 ---
 
 # Welcome
@@ -9,9 +9,13 @@ author: 'Part 1 of 4 in the [Develop .NET Applications with the Microsoft Identi
 
 ### About us
 
-Sidney Andrews
+Co-Presenter Name
 
-☁️ *Azure MVP, Microsoft Certified Trainer*
+☁️ *Co-Presenter Title*
+
+Co-Presenter Name
+
+☁️ *Co-Presenter Title*
 
 > For questions or help with this series: <MSUSDev@Microsoft.com>
 
@@ -23,14 +27,14 @@ All demos and source code available online:
 
 ### Series roadmap
 
-* Session 1:
+* **Session 1:**
   * **↪️ Authenticating users in JavaScript apps with MSAL.NET**
 * Session 2:
-  * Bring identity components to apps with the Microsoft Graph Toolkit
+  * Discover Microsoft Graph Toolkit Components
 * Session 3:
-  * Authenticating to Azure services with Azure AD and MSAL.NET
+  * Authenticating to Azure with MSAL.NET
 * Session 4:
-  * Getting Started with the Microsoft Graph SDK from your .NET apps
+  * The Microsoft Graph SDK for .NET
 
 ### Today's agenda
 

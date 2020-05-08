@@ -9,9 +9,13 @@ author: 'Part 1 of 4 in the [Develop JavaScript Applications with the Microsoft 
 
 ### About us
 
-Sidney Andrews
+Co-Presenter Name
 
-☁️ *Azure MVP, Microsoft Certified Trainer*
+☁️ *Co-Presenter Title*
+
+Co-Presenter Name
+
+☁️ *Co-Presenter Title*
 
 > For questions or help with this series: <MSUSDev@Microsoft.com>
 
@@ -23,14 +27,14 @@ All demos and source code available online:
 
 ### Series roadmap
 
-* Session 1:
+* **Session 1:**
   * **↪️ Authenticating users in JavaScript apps with MSAL.js**
 * Session 2:
-  * Bring identity components to apps with the Microsoft Graph Toolkit
+  * Discover Microsoft Graph Toolkit Components
 * Session 3:
-  * Authenticating to Azure services with Azure AD and MSAL.js
+  * Authenticating to Azure with MSAL.js
 * Session 4:
-  * Getting Started with the Microsoft Graph SDK from your JavaScript apps
+  * The Microsoft Graph SDK for JavaScript
 
 ### Today's agenda
 

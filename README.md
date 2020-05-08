@@ -11,13 +11,12 @@ The Microsoft Identity Platform unifies the way we develop solutions that integr
 ### Develop JavaScript Applications with the Microsoft Identity Platform
 
 1. [Authenticating users in JavaScript apps with MSAL.js](presentations/auth_users_msaljs.md)
-1. Bring identity components to apps with the Microsoft Graph Toolkit
-1. Authenticating to Azure services with Azure AD and MSAL.js
-1. Getting Started with the Microsoft Graph SDK from your JavaScript apps
+1. [Discover Microsoft Graph Toolkit Components](presentations/graph_toolkit.md)
+1. [Authenticating to Azure with MSAL.js](presentations/azure_resources_msaljs.md)
+1. [The Microsoft Graph SDK for JavaScript](presentations/graph_sdk_js.md)
 
 ### Develop .NET Applications with the Microsoft Identity Platform
 
 1. [Authenticating users in .NET apps with MSAL.NET](presentations/auth_users_msalnet.md)
-1. Bring identity components to apps with the Microsoft Graph Toolkit
-1. Authenticating to Azure services with Azure AD and MSAL.NET
-1. Getting Started with the Microsoft Graph SDK from your .NET apps
+1. [Authenticating to Azure with MSAL.NET](presentations/azure_resources_msalnet.md)
+1. [The Microsoft Graph SDK for .NET](presentations/graph_sdk_net.md)
