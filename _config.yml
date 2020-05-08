@@ -1,0 +1,10 @@
+title: Developing Applications with the Microsoft Identity Platform
+remote_theme: azure-immersion/workshop-jekyll-theme
+plugins:
+  - jekyll-sitemap
+  - jekyll-mentions
+  - jemoji
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge

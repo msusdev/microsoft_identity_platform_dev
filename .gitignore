@@ -2,3 +2,5 @@
 /presentations/diagrams/*.pptx
 /presentations/diagrams/*.png
 /*.pptx
+Gemfile*
+_site/
