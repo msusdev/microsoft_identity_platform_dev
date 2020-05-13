@@ -3,7 +3,7 @@ title: 'Discover Microsoft Graph Toolkit Components'
 author: 'Part 2 of 4 in the [Develop JavaScript Applications with the Microsoft Identity Platform](https://github.com/msusdev) series'
 ---
 
-# Authenticating users in JavaScript apps with MSAL.js
+# Discover Microsoft Graph Toolkit Components
 
 ## Overview
 

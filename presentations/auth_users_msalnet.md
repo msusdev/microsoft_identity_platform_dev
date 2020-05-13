@@ -3,7 +3,7 @@ title: 'Authenticating users in .NET apps with MSAL.NET'
 author: 'Part 1 of 3 in the [Develop .NET Applications with the Microsoft Identity Platform](https://github.com/msusdev) series'
 ---
 
-# Welcome
+# Authenticating users in .NET apps with MSAL.NET
 
 ## Overview
 

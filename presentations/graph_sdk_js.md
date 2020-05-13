@@ -3,7 +3,7 @@ title: 'The Microsoft Graph SDK for JavaScript'
 author: 'Part 4 of 4 in the [Develop JavaScript Applications with the Microsoft Identity Platform](https://github.com/msusdev) series'
 ---
 
-# Authenticating users in JavaScript apps with MSAL.js
+# The Microsoft Graph SDK for JavaScript
 
 ## Overview
 

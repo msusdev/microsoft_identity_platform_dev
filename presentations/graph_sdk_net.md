@@ -3,7 +3,7 @@ title: 'The Microsoft Graph SDK for .NET'
 author: 'Part 3 of 3 in the [Develop .NET Applications with the Microsoft Identity Platform](https://github.com/msusdev) series'
 ---
 
-# Welcome
+# The Microsoft Graph SDK for .NET
 
 ## Overview
 

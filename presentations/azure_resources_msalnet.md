@@ -3,7 +3,7 @@ title: 'Authenticating to Azure with MSAL.NET'
 author: 'Part 2 of 3 in the [Develop .NET Applications with the Microsoft Identity Platform](https://github.com/msusdev) series'
 ---
 
-# Welcome
+# Authenticating to Azure with MSAL.NET
 
 ## Overview
 

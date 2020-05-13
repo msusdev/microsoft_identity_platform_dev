@@ -3,7 +3,7 @@ title: 'Authenticating to Azure with MSAL.js'
 author: 'Part 3 of 4 in the [Develop JavaScript Applications with the Microsoft Identity Platform](https://github.com/msusdev) series'
 ---
 
-# Authenticating users in JavaScript apps with MSAL.js
+# Authenticating to Azure with MSAL.js
 
 ## Overview
 
