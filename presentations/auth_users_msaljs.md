@@ -384,12 +384,12 @@ The ``access_token`` and ``refresh_token`` values have been concatenated for bre
 ### Node Package Manager
 
 * Available on NPM
-  * Vanilla JavaScript 1.0
-    * **[@azure/msal](https://www.npmjs.com/package/@azure/msal)**
-  * In-Browser JavaScript 2.0 (Preview)
+  * Vanilla JavaScript
     * **[@azure/msal-browser](https://www.npmjs.com/package/@azure/msal-browser)**
   * Angular
     * **[@azure/msal-angular](https://www.npmjs.com/package/@azure/msal-angular)**
+  * React
+    * **[@azure/msal-react](https://www.npmjs.com/package/@azure/msal-react)**
 
 ### UserAgentApplication
 
@@ -404,7 +404,7 @@ The ``access_token`` and ``refresh_token`` values have been concatenated for bre
 ### UserAgentApplication Instantiation
 
 ```js
-var client = new Msal.UserAgentApplication(
+var client = new msal.PublicClientApplication(
     ...
 );
 ```
@@ -412,7 +412,7 @@ var client = new Msal.UserAgentApplication(
 ### Auth Options
 
 ```js
-var client = new Msal.UserAgentApplication({
+var client = msal.PublicClientApplication({
     auth: {
         clientId: '<client-id>',
         authority: 'https://login.microsoftonline.com/<authority>',
@@ -424,7 +424,7 @@ var client = new Msal.UserAgentApplication({
 ### Cache Options
 
 ```js
-var client = new Msal.UserAgentApplication({
+var client = new msal.PublicClientApplication({
     cache: {
         cacheLocation: 'localStorage' <or> 'sessionStorage'
     }
@@ -442,13 +442,20 @@ var request = {
 ### Logging in interactively
 
 ```js
-var response = await client.loginPopup(request);
+var loginRequest = {
+    scopes: [ 'user.read' ]
+}
+var loginResponse = await client.loginPopup(loginRequest);
 ```
 
 ### Acquring a token interactively
 
 ```js
-var response = await client.acquireTokenSilent(request);
+var tokenRequest = {
+    scopes: [ 'user.read' ],
+    account: loginResponse.account
+}
+var tokenResponse = await client.acquireTokenSilent(tokenRequest);
 ```
 
 ## Demo: *Browser-based interactive authentication using MSAL.JS*
@@ -465,17 +472,15 @@ var response = await client.acquireTokenSilent(request);
 
 1. Add a new platform with the following settings:
 
-    * Platform: **Web**
+    * Platform: **Single-page application**
 
     * Redirect URIs: **<http://localhost:8080>**
-
-    * Implicit grant: **Access tokens** & **ID tokens**
 
 1. Save the platform configuration changes
 
 1. Open **Visual Studio Code** in an empty folder
 
-1. Run ``git clone https://gist.github.com/seesharprun/d87f6ddd74d7711a0d4249268a2c94ca .`` to clone the sample Node.js web application
+1. Run ``git clone https://github.com/msusdev/example-static-js-app.git .`` to clone the sample Node.js web application
 
 1. Run ``npm install`` to install the Node.js dependencies
 
@@ -495,7 +500,7 @@ var response = await client.acquireTokenSilent(request);
 
 1. Open the **index.html** file
 
-1. In the HTML file's header, add the following element to reference the **MSAL.JS v1.3.0** library: ``<script type="text/javascript" src="https://alcdn.msauth.net/lib/1.3.0/js/msal.js"></script>``
+1. In the HTML file's header, add the following element to reference the **MSAL.JS v2.16.1** library: ``<script type="text/javascript" src="https://alcdn.msauth.net/browser/2.16.1/js/msal-browser.min.js"></script>``
 
 1. Open the **index.js** file
 
@@ -505,16 +510,17 @@ var response = await client.acquireTokenSilent(request);
     const config = {
         auth: {
             clientId: '<client-id>',
-            authority: 'https://login.microsoftonline.com/common/',
+            authority: 'https://login.microsoftonline.com/organizations/',
             redirectUri: 'http://localhost:8080'
         }
     };
-    var client = new Msal.UserAgentApplication(config);
-    var request = {
+    var client = new msal.PublicClientApplication(config);
+
+    var loginRequest = {
         scopes: [ 'user.read' ]
     };
-    let loginResponse = await client.loginPopup(request);
-    console.dir(loginResponse);
+    let loginResponse = await client.loginPopup(loginRequest);
+    console.log('Login Response', loginResponse);
     ```
 
 1. Return to and refresh your browser window
@@ -524,8 +530,12 @@ var response = await client.acquireTokenSilent(request);
 1. Return to the **index.js** file in **Visual Studio Code** and add the following code:
 
     ```js
-    let tokenResponse = await client.acquireTokenSilent(request);
-    console.dir(tokenResponse);
+    var tokenRequest = {
+        scopes: [ 'user.read' ],
+        account: loginResponse.account
+    };
+    let tokenResponse = await client.acquireTokenSilent(tokenRequest);
+    console.log('Token Response', tokenResponse);
     ```
 
 1. Return to and refresh your browser window
@@ -535,13 +545,13 @@ var response = await client.acquireTokenSilent(request);
 1. Return to the **index.js** file in **Visual Studio Code** and add the following code:
 
     ```js
-    let payload = await fetch("https://graph.microsoft.com/beta/me", {
+    let payload = await fetch("https://graph.microsoft.com/v1.0/me", {
         headers: {
             'Authorization': 'Bearer ' + tokenResponse.accessToken
         }
     });
     let json = await payload.json();
-    console.dir(json);
+    console.log('Graph Response', json);
     ```
 
 1. Return to and refresh your browser window
