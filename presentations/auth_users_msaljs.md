@@ -79,7 +79,7 @@ All demos and source code available online:
 
 1. Review the various sections of the landing page
 
-1. In the **About Microsoft identity platform** section, within the **Overview** sub-sectoin, selet **Microsoft identity plateform (v2.0)**
+1. In the **About Microsoft identity platform** section, within the **Overview** sub-sectoin, select **What is the Microsoft identity platform?**
 
 1. Review the documentation on this page
 
@@ -350,6 +350,8 @@ The ``access_token`` and ``refresh_token`` values have been concatenated for bre
 
 1. Observe the JSON response of the request, it should contain an ``access_token`` property with your MSAL token
 
+1. Walkthrough the Graph Explorer at [aka.ms/ge](https://developer.microsoft.com/graph/graph-explorer)
+
 1. Build a HTTP **GET** request using the endpoint ``https://graph.microsoft.com/beta/me`` and following these steps:
 
     1. Add an **OAuth 2.0** bearer token header using your **Access Token** created earlier.
@@ -459,17 +461,15 @@ var response = await client.acquireTokenSilent(request);
 
 1. Navigate to your recently created application registration
 
-
-
 1. Navigate to the **Authentication** section
 
 1. Add a new platform with the following settings:
 
     * Platform: **Web**
 
-    * Redirect URIs **<http://localhost:8080>**
+    * Redirect URIs: **<http://localhost:8080>**
 
-    * Implicit grant **Access tokens** & **ID tokens**
+    * Implicit grant: **Access tokens** & **ID tokens**
 
 1. Save the platform configuration changes
 
