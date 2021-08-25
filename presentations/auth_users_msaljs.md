@@ -500,7 +500,7 @@ var tokenResponse = await client.acquireTokenSilent(tokenRequest);
 
 1. Open the **index.html** file
 
-1. In the HTML file's header, add the following element to reference the **MSAL.JS v2.16.1** library: ``<script type="text/javascript" src="https://alcdn.msauth.net/browser/2.16.1/js/msal-browser.min.js"></script>``
+1. In the HTML file's header, add the following element to reference the **[MSAL.JS v2.16.1](https://alcdn.msauth.net/browser/2.16.1/js/msal-browser.min.js)** library: ``<script type="text/javascript" src="https://alcdn.msauth.net/browser/2.16.1/js/msal-browser.min.js"></script>``
 
 1. Open the **index.js** file
 
