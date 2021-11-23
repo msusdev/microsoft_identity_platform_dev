@@ -476,6 +476,8 @@ var tokenResponse = await client.acquireTokenSilent(tokenRequest);
 
     * Redirect URIs: **<http://localhost:8080>**
 
+1. Remove the existing **Public client/native (mobile & desktop)** platform.
+
 1. Save the platform configuration changes
 
 1. Open **Visual Studio Code** in an empty folder
