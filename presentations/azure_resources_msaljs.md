@@ -48,7 +48,7 @@ All demos and source code available online:
 
 ##### Create Node server-side app
 
-> Register app with **secret**, **User.Read.All**, and **admin constent**.
+> Register app with **secret**, **User.Read.All (application permission)**, and **admin constent**.
 
 ```bash
 npm init
@@ -108,7 +108,7 @@ import fetch from 'node-fetch';
 ```javascript
 let query = await fetch('https://graph.microsoft.com/v1.0/users', {
     headers: {
-        'Authorization': 'Bearer ' + response.accessToken
+        'Authorization': `Bearer ${response.accessToken}`
     }
 });
 let json = await query.json();
@@ -117,34 +117,63 @@ console.dir(json);
 
 ##### Manipulate Azure Storage
 
-> Add Azure Storage **user_impersonation** permission and grant **admin consent**. Also use RBAC to add AAD app reg as a **Storage Blob Data Contributor**.
-
 ```bash
 npm install @azure/storage-blob --save
 ```
 
 ```javascript
-import { BlobServiceClient }  from '@azure/storage-blob';
+import { BlobServiceClient, StorageSharedKeyCredential }  from '@azure/storage-blob';
 ```
+
+```javascript
+const credential = new StorageSharedKeyCredential("<storage-account>", "<storage-key>");
+
+var client = new BlobServiceClient('https://<storage-account>.blob.core.windows.net/', credential);
+
+let container = client.getContainerClient('keycontainer');
+await container.createIfNotExists();
+```
+
+> Add Azure Storage **user_impersonation** permission and grant **admin consent**. Also use RBAC to add current account as a **Storage Blob Data Contributor**.
 
 ```bash
 npm install @azure/identity --save
 ```
 
 ```javascript
+import { BlobServiceClient }  from '@azure/storage-blob';
+```
+
+```javascript
+import { AzureCliCredential } from "@azure/identity";
+```
+
+```javascript
+const credential = new AzureCliCredential();
+
+var client = new BlobServiceClient('https://<storage-account>.blob.core.windows.net/', credential);
+
+let container = client.getContainerClient('clicontainer');
+await container.createIfNotExists();
+```
+
+```bash
+az login
+az account set --subscription '<subscription-name>'
+```
+
+> Use RBAC to add AAD app reg as a **Storage Blob Data Contributor**.
+
+```javascript
 import { DefaultAzureCredential } from '@azure/identity';
 ```
 
 ```javascript
-var request = {
-    scopes: [ 'https://storage.azure.com/.default' ]
-};
-```
+const credential = new DefaultAzureCredential();
 
-```javascript
-var client = new BlobServiceClient('https://<storage-account>.blob.core.windows.net/', new DefaultAzureCredential());
+var client = new BlobServiceClient('https://<storage-account>.blob.core.windows.net/', credential);
 
-let container = client.getContainerClient('democontainer');
+let container = client.getContainerClient('envcontainer');
 await container.createIfNotExists();
 ```
 
@@ -173,7 +202,7 @@ npm install @azure/core-auth --save
 ```
 
 ```javascript
-class MyAzureCredential {
+class MsalAzureCredential {
     async getToken(requestedScopes) {
         const config = {
           auth: {
@@ -196,13 +225,21 @@ class MyAzureCredential {
 ```
 
 ```javascript
-var client = new BlobServiceClient('https://<storage-account>.blob.core.windows.net/', new MyAzureCredential());
+var client = new BlobServiceClient('https://<storage-account>.blob.core.windows.net/', new MsalAzureCredential());
 
-let container = client.getContainerClient('examplecontainer');
+let container = client.getContainerClient('msalcontainer');
 await container.createIfNotExists();
 ```
 
 ##### Use custom token credential with
+
+> Add Azure Cosmos DB **user_impersonation** permission and grant **admin consent**.
+
+```bash
+az login
+az cosmosdb sql role definition list --account-name '<account-name'> --resource-group '<resource-group-name>'
+az cosmosdb sql role assignment create --account-name '<account-name'> --resource-group '<resource-group-name>' --role-assignment-id '<random-guid>' --role-definition-name 'Cosmos DB Built-In Data Contributor' --principal-id '<azure-ad-app-id>' --scope '/dbs/<database-name>/colls/<container-name>'
+```
 
 ```bash
 npm install @azure/cosmos --save
@@ -214,7 +251,7 @@ import { CosmosClient } from '@azure/cosmos';
 
 ```javascript
 var client = new CosmosClient({
-   aadCredentials: new MyAzureCredential,
+   aadCredentials: new MsalAzureCredential,
    endpoint:  'https://<account-name>.documents.azure.com:443/'
 });
 
