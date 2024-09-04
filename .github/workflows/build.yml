@@ -31,7 +31,7 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
     steps:      
       - name: 'Download Presentation Artifacts'
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: presentations
       - name: 'Create GitHub Release'
